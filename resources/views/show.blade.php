@@ -1,8 +1,7 @@
 @extends('layout.layout')
-@section('content') 
+@section('content')
     <div class="container">
-        <div class="row">
-            @forelse ($comics as $comic)
+        <div class="row justify-content-center">
             <div class="card" style="width: 18rem;">
                 <img src="{{$comic->thumb}}" class="card-img-top" alt="...">
                 <div class="card-body">
@@ -20,11 +19,6 @@
                   <a href="#" class="card-link">Another link</a>
                 </div>
               </div>
-        @empty
-    
-            <h2>Error</h2>
-    
-        @endforelse
         </div>
     </div>
 @endsection
