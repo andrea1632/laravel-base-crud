@@ -4,7 +4,19 @@
 @section('content')
 <h1 class="text-uppercase text-primary py-5 text-center">crea un nuovo fumetto</h1>
 
-<form action="{{route('comics.store')}}" method="POST">
+@if( $errors->any() )
+<div class="alert alert-danger">
+    <ul>
+        @foreach ($errors->all() as $error)
+        <li>
+            {{$error}}
+        </li>
+        @endforeach
+    </ul>
+</div>
+@endif
+
+<form action="{{route('comics.store')}}" method="POST" novalidate>
 
     @csrf
 

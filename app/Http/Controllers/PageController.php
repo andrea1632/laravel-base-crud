@@ -36,6 +36,20 @@ class PageController extends Controller
      */
     public function store(Request $request)
     {
+
+        $request->validate(
+            [
+                'title'=>'required',
+                'description'=>'required',
+                'thumb'=>'required',
+                'price'=>'required',
+                'series'=>'required',
+                'sale_date'=>'required',
+                'type'=>'required'
+            ]
+            );
+
+
         $data = $request->all();
 
         $new_comic = new Comic();
@@ -63,9 +77,9 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Comic $comic)
     {
-        //
+        return view('edit', compact('comic'));
     }
 
     /**
@@ -75,9 +89,25 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comic $comic)
     {
-        //
+        $request->validate(
+            [
+                'title'=>'required',
+                'description'=>'required',
+                'thumb'=>'required',
+                'price'=>'required',
+                'series'=>'required',
+                'sale_date'=>'required',
+                'type'=>'required'
+            ]
+            );
+
+        $data = $request->all();
+        $comic->fill($data);
+        $comic->save();
+
+        return redirect()->route('home', $comic);
     }
 
     /**

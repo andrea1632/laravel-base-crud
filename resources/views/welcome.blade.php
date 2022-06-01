@@ -17,7 +17,7 @@
                 </ul>
                 <div class="card-body">
                   <a href=" {{route('comics.show', $comic->id)}} " class="card-link">Explore</a>
-                  <a href="#" class="card-link">Another link</a>
+                  <a href="{{route('comics.edit', $comic->id)}}" class="card-link">Modifica Personaggio</a>
                 </div>
               </div>
         @empty
