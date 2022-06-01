@@ -2,6 +2,11 @@
 @section('content') 
     <div class="container">
         <div class="row">
+          @if(session('message'))
+            <div class="alert alert-succes">
+                {{session('message')}}
+            </div>
+          @endif
             @forelse ($comics as $comic)
             <div class="card" style="width: 18rem;">
                 <img src="{{$comic->thumb}}" class="card-img-top" alt="...">
@@ -17,7 +22,12 @@
                 </ul>
                 <div class="card-body">
                   <a href=" {{route('comics.show', $comic->id)}} " class="card-link">Explore</a>
-                  <a href="{{route('comics.edit', $comic->id)}}" class="card-link">Modifica Personaggio</a>
+                  <a href="{{route('comics.edit', $comic->id)}}" class="card-link">Modifica Personaggio/Fumetto</a>
+                  <form action="{{route('comics.destroy', $comic->id)}}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger mt-2">Elimina Fumetto</button>
+                  </form>
                 </div>
               </div>
         @empty

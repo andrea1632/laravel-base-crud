@@ -116,8 +116,9 @@ class PageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return redirect()->route('home', $comic)->with('message', "Hai eliminato il fumetto : $comic->title");
     }
 }
